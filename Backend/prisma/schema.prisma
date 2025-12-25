@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UsageSource {
+  MANUAL
+  SENSOR
+  IMPORT
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  householdSize Int
+  city          String
+
+  usages        Usage[]
+  scores        Score[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Resource {
+  id        Int      @id @default(autoincrement())
+  name      String
+  unit      String
+  co2Factor Float?
+
+  usages    Usage[]
+  benchmarks Benchmark[]
+}
+
+model Usage {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  resourceId Int
+  month      Int
+  year       Int
+  value      Float
+  source     UsageSource
+
+  flags      WasteFlag[]
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resource Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, resourceId, month, year])
+}
+
+model Benchmark {
+  id            Int      @id @default(autoincrement())
+  resourceId    Int
+  householdSize Int
+  avgValue      Float
+  region        String
+
+  resource Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+}
+
+model WasteFlag {
+  id       Int      @id @default(autoincrement())
+  usageId  Int
+  type     String
+  reason   String
+  severity Severity
+
+  usage Usage @relation(fields: [usageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Score {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  month       Int
+  year        Int
+  score       Int
+  improvement Float
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}

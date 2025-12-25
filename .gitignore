@@ -1,0 +1,13 @@
+# Node
+node_modules/
+.env
+
+# Prisma
+prisma/migrations/
+
+# Build
+dist/
+build/
+
+# OS
+.DS_Store
