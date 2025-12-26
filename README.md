@@ -173,7 +173,7 @@ http://localhost:3000
 <img width="1440" height="809" alt="Image" src="https://github.com/user-attachments/assets/7e4817e2-b243-40f9-a3f4-200396a032a9" />
 
 The dashboard is intentionally minimal and focused on signal over noise.
-1️⃣ Total CO₂ Impact (Top KPI)
+###1️⃣ Total CO₂ Impact (Top KPI)
 Displays cumulative CO₂ emissions
 Calculated from recorded household usage
 Uses fixed emission factors per resource
@@ -181,7 +181,7 @@ This is not a forecast.
 It represents consequences of past behavior.
 
 
-2️⃣ Add Monthly Usage (Left Panel)
+###2️⃣ Add Monthly Usage (Left Panel)
 Users manually log:
 Resource type (Electricity, Water, Fuel, Waste)
 Month and year
@@ -193,7 +193,7 @@ No smoothing
 This keeps the data auditable and honest.
 
 
-3️⃣ Inefficiency Alerts (Right Panel)
+###3️⃣ Inefficiency Alerts (Right Panel)
 Alerts are generated when rules are violated.
 Each alert includes:
 Type (SPIKE, INEFFICIENCY)
@@ -232,8 +232,8 @@ Dashboard Visualization
 
 
 🛠️Tech Stack (Minimal & Intentional)
-Frontend: React
-Backend: Node.js
-Database: PostgreSQL
-ORM: Prisma
+* Frontend: React
+* Backend: Node.js
+* Database: PostgreSQL
+* ORM: Prisma
 
