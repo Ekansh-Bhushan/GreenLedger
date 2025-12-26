@@ -80,7 +80,7 @@ All rules are deterministic, transparent, and explainable.
 ---
 
 ## 📁 Project Structure
-
+```
 GreenLedger/
 ├── .gitignore
 ├── Backend/
@@ -134,7 +134,7 @@ GreenLedger/
         ├── reportWebVitals.js
         └── setupTests.js
 
-
+```
 
 
 ---
